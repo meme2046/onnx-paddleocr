@@ -1,6 +1,7 @@
 import argparse
 import time
 
+from onnx_ocr.model_loader import download_models, get_default_model_paths
 from onnx_ocr.predict_system import TextSystem
 from onnx_ocr.utils import draw_ocr
 from onnx_ocr.utils import infer_args as init_args
@@ -17,6 +18,16 @@ class ONNXPaddleOcr(TextSystem):
 
         # params.rec_image_shape = "3, 32, 320"
         params.rec_image_shape = "3, 48, 320"
+
+        # 设置默认模型路径
+        default_paths = get_default_model_paths()
+        for key, value in default_paths.items():
+            if getattr(params, key) == "":  # 如果参数为空字符串，则使用默认路径
+                setattr(params, key, value)
+
+        download_models(
+            getattr(params, "det_model_dir"), getattr(params, "rec_model_dir")
+        )
 
         # 根据传入的参数覆盖更新默认参数
         params.__dict__.update(**kwargs)

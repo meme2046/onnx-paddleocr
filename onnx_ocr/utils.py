@@ -280,8 +280,18 @@ def infer_args():
     parser.add_argument(
         "--det_model_dir",
         type=str,
-        default=str(module_dir / "models/ppocrv5_server/det/det.onnx"),
+        default="",
     )
+    parser.add_argument(
+        "--rec_model_dir",
+        type=str,
+        default="",
+    )
+    parser.add_argument(
+        "--cls_model_dir",
+        type=str,
+        default=str(module_dir / "models/ppocrv5_server/cls/cls.onnx"),
+    )  # cls 是 "classifier" 的缩写，专门用于文本方向分类
     parser.add_argument("--det_limit_side_len", type=float, default=960)
     parser.add_argument("--det_limit_type", type=str, default="max")
     parser.add_argument("--det_box_type", type=str, default="quad")
@@ -317,11 +327,7 @@ def infer_args():
 
     # params for text recognizer
     parser.add_argument("--rec_algorithm", type=str, default="SVTR_LCNet")
-    parser.add_argument(
-        "--rec_model_dir",
-        type=str,
-        default=str(module_dir / "models/ppocrv5_server/rec/rec.onnx"),
-    )
+
     parser.add_argument("--rec_image_inverse", type=str2bool, default=True)
     parser.add_argument("--rec_image_shape", type=str, default="3, 48, 320")
     parser.add_argument("--rec_batch_num", type=int, default=6)
@@ -355,11 +361,7 @@ def infer_args():
 
     # params for text classifier
     parser.add_argument("--use_angle_cls", type=str2bool, default=False)
-    parser.add_argument(
-        "--cls_model_dir",
-        type=str,
-        default=str(module_dir / "models/ppocrv5_server/cls/cls.onnx"),
-    )  # cls 是 "classifier" 的缩写，专门用于文本方向分类
+
     parser.add_argument("--cls_image_shape", type=str, default="3, 48, 192")
     parser.add_argument("--label_list", type=list, default=["0", "180"])
     parser.add_argument("--cls_batch_num", type=int, default=6)
