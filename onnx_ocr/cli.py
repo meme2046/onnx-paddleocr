@@ -111,7 +111,7 @@ def ocr(
     # 输出结果
     if output_path:
         # 保存到文件
-        output_dir = Path("./output")
+        output_dir = Path(output_path)
         output_dir.mkdir(parents=True, exist_ok=True)
         output_path = str(output_dir / f"{Path(image_path).stem}_rec.json")
         try:

@@ -6,9 +6,10 @@ import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
+project_root = Path(__file__).resolve().parents[1]
 # 获取当前文件所在的目录
-# module_dir = Path(__file__).resolve().parent
-module_dir = Path(".")
+
+# module_dir = Path(".")
 
 
 def get_rotate_crop_image(img, points):
@@ -121,7 +122,7 @@ def text_visual(
     img_h=400,
     img_w=600,
     threshold=0.0,
-    font_path=str(module_dir / "fonts/simfang.ttf"),
+    font_path=str(project_root / "fonts/simfang.ttf"),
 ):
     """
     create new blank img and draw txt on it
@@ -202,7 +203,7 @@ def draw_ocr(
     txts=None,
     scores=None,
     drop_score=0.5,
-    font_path=str(module_dir / "fonts/simfang.ttf"),
+    font_path=str(project_root / "fonts/simfang.ttf"),
 ):
     """
     Visualize the results of OCR detection and recognition
@@ -290,7 +291,7 @@ def infer_args():
     parser.add_argument(
         "--cls_model_dir",
         type=str,
-        default=str(module_dir / "models/ppocrv5_server/cls/cls.onnx"),
+        default=str(project_root / "models/ppocrv5_server/cls/cls.onnx"),
     )  # cls 是 "classifier" 的缩写，专门用于文本方向分类
     parser.add_argument("--det_limit_side_len", type=float, default=960)
     parser.add_argument("--det_limit_type", type=str, default="max")
@@ -335,11 +336,11 @@ def infer_args():
     parser.add_argument(
         "--rec_char_dict_path",
         type=str,
-        default=str(module_dir / "models/ppocrv5_server/ppocrv5_dict.txt"),
+        default=str(project_root / "models/ppocrv5_server/ppocrv5_dict.txt"),
     )
     parser.add_argument("--use_space_char", type=str2bool, default=True)
     parser.add_argument(
-        "--vis_font_path", type=str, default=str(module_dir / "fonts/simfang.ttf")
+        "--vis_font_path", type=str, default=str(project_root / "fonts/simfang.ttf")
     )
     parser.add_argument("--drop_score", type=float, default=0.5)
 
@@ -354,7 +355,7 @@ def infer_args():
     parser.add_argument(
         "--e2e_char_dict_path",
         type=str,
-        default=str(module_dir / "ppocr/utils/ic15_dict.txt"),
+        default=str(project_root / "ppocr/utils/ic15_dict.txt"),
     )
     parser.add_argument("--e2e_pgnet_valid_set", type=str, default="totaltext")
     parser.add_argument("--e2e_pgnet_mode", type=str, default="fast")
@@ -379,11 +380,11 @@ def infer_args():
 
     #
     parser.add_argument(
-        "--draw_img_save_dir", type=str, default=str(module_dir / "inference_results")
+        "--draw_img_save_dir", type=str, default=str(project_root / "inference_results")
     )
     parser.add_argument("--save_crop_res", type=str2bool, default=False)
     parser.add_argument(
-        "--crop_res_save_dir", type=str, default=str(module_dir / "output")
+        "--crop_res_save_dir", type=str, default=str(project_root / "output")
     )
 
     # multi-process
@@ -393,7 +394,7 @@ def infer_args():
 
     parser.add_argument("--benchmark", type=str2bool, default=False)
     parser.add_argument(
-        "--save_log_path", type=str, default=str(module_dir / "log_output/")
+        "--save_log_path", type=str, default=str(project_root / "log_output/")
     )
 
     parser.add_argument("--show_log", type=str2bool, default=True)

@@ -24,33 +24,40 @@ uv add onnx-paddleocr # uv安装
 pipx install onnx-paddleocr # pipx安装
 uv tool install onnx-paddleocr # uv安装
 ocr --help # 帮助信息
-ocr ./images/test.jpg # 示例:识别图片
+ocr ./test.jpg --output ./output # 示例:识别图片
 ```
 
 ### Python API 使用
 
 ```python
-from onnx_ocr import ONNXPaddleOcr
 import cv2
+
+from onnx_ocr import ONNXPaddleOcr, process_bounding_box
 
 # 初始化OCR
 model = ONNXPaddleOcr(
-        use_angle_cls=False,
-        use_gpu=False,
-        cpu_threads=16,
-        det_model_dir="", # 不指定默认:~/.onnx/models/ppocrv5_server/det/det.onnx
-        rec_model_dir="", # 不指定默认:~/.onnx/models/ppocrv5_server/rec/rec.onnx
-    )
+    use_angle_cls=False,
+    use_gpu=False,
+    cpu_threads=16,
+    det_model_dir="",  # 不指定默认:~/.onnx/models/ppocrv5_server/det/det.onnx
+    rec_model_dir="",  # 不指定默认:~/.onnx/models/ppocrv5_server/rec/rec.onnx
+)
 
 # 读取图片
-img = cv2.imread('./images/test.jpg')
+img = cv2.imread("./images/test.jpg")
 
 # 执行OCR
-result = ocr.ocr(img)
+results = model.ocr(img)
 
 # 输出结果
-for line in result[0]:
-    print(f"文本: {line[1][0]}, 置信度: {line[1][1]}")
+ocr_results = [
+    {
+        "text": line[1][0],
+        "confidence": float(line[1][1]),
+        "bounding_box": process_bounding_box(line[0]),
+    }
+    for line in result[0]
+]
 ```
 
 ## 模型文件
