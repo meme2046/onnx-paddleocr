@@ -69,11 +69,8 @@ for line in result[0]:
 └── ppocrv5_server/
     ├── det/
     │   └── det.onnx
-    ├── rec/
-    │   └── rec.onnx
-    ├── cls/
-    │   └── cls.onnx
-    └── ppocrv5_dict.txt
+    └── rec/
+        └── rec.onnx
 ```
 
 ## 部分参数说明
