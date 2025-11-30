@@ -1,6 +1,5 @@
 # cli.py
 import json
-import os
 import time
 from pathlib import Path
 from typing import Optional
@@ -26,12 +25,6 @@ def ocr(
     use_gpu: bool = typer.Option(False, "--use-gpu", help="是否使用GPU"),
     det_model_dir: str = typer.Option("", "--det-model", help="检测模型路径"),
     rec_model_dir: str = typer.Option("", "--rec-model", help="识别模型路径"),
-    models_dir: str = typer.Option(
-        None, "--models-dir", help="模型目录路径，默认为 ~/.onnx/models/"
-    ),
-    auto_download: bool = typer.Option(
-        True, "--auto-download/--no-auto-download", help="是否自动下载模型"
-    ),
     cls_model_dir: str = typer.Option(
         "./models/ppocrv5_server/cls/cls.onnx", "--cls-model", help="分类模型路径"
     ),
@@ -59,23 +52,6 @@ def ocr(
     """
     对指定图像执行OCR识别
     """
-    # 获取默认模型目录
-    if not models_dir:
-        from onnx_ocr.model_loader import get_default_models_dir
-
-        models_dir = get_default_models_dir()
-
-    # 设置默认模型路径
-    if not det_model_dir:
-        det_model_dir = os.path.join(models_dir, "ppocrv5_server/det/det.onnx")
-    if not rec_model_dir:
-        rec_model_dir = os.path.join(models_dir, "ppocrv5_server/rec/rec.onnx")
-
-    # 自动下载模型文件
-    if auto_download:
-        from onnx_ocr.model_loader import download_models_if_needed
-
-        download_models_if_needed(models_dir)
 
     # 检查输入文件是否存在
     if not Path(image_path).exists():
