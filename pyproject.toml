@@ -39,7 +39,11 @@
     dev = ["ruff"]
 
 [tool.hatch.build]
-    packages = ["fonts", "models", "onnx_ocr", "utils"]
+    exclude = [
+        "models/ppocrv5_server/det/det.onnx",
+        "models/ppocrv5_server/rec/rec.onnx",
+    ]
+    packages = ["fonts", "onnx_ocr", "utils"]
 
 [build-system]
     build-backend = "hatchling.build"
