@@ -78,14 +78,12 @@ for line in result[0]:
 
 ## 参数说明
 
-| 参数            | 默认值                                   | 说明               |
-| --------------- | ---------------------------------------- | ------------------ |
-| --use-angle-cls | False                                    | 是否使用角度分类器 |
-| --use-gpu       | False                                    | 是否使用 GPU       |
-| --det-model     | ./models/ppocrv5_server/det/det.onnx     | 检测模型路径       |
-| --rec-model     | ./models/ppocrv5_server/rec/rec.onnx     | 识别模型路径       |
-| --cls-model     | ./models/ppocrv5_server/cls/cls.onnx     | 分类模型路径       |
-| --dict-path     | ./models/ppocrv5_server/ppocrv5_dict.txt | 字符字典路径       |
+| 参数            | 默认值                                     | 说明               |
+| --------------- | ------------------------------------------ | ------------------ |
+| --use-angle-cls | False                                      | 是否使用角度分类器 |
+| --use-gpu       | False                                      | 是否使用 GPU       |
+| --det-model     | ~/.onnx/models/ppocrv5_server/det/det.onnx | 检测模型路径       |
+| --rec-model     | ~/.onnx/models/ppocrv5_server/rec/rec.onnx | 识别模型路径       |
 
 ## 许可证
 
