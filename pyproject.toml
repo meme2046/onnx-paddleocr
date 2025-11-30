@@ -27,7 +27,7 @@
         ocr = "onnx_ocr.cli:app"
 
     [project.urls]
-        Homepage   = "https://github.com/yourusername/onnx-paddleocr"
+        Homepage   = "https://pypi.org/project/onnx-paddleocr"
         Repository = "https://github.com/meme2046/onnx-paddleocr"
 
 [tool.uv]
