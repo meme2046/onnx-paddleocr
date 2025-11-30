@@ -25,12 +25,6 @@ def ocr(
     use_gpu: bool = typer.Option(False, "--use-gpu", help="是否使用GPU"),
     det_model_dir: str = typer.Option("", "--det-model", help="检测模型路径"),
     rec_model_dir: str = typer.Option("", "--rec-model", help="识别模型路径"),
-    cls_model_dir: str = typer.Option(
-        "./models/ppocrv5_server/cls/cls.onnx", "--cls-model", help="分类模型路径"
-    ),
-    rec_char_dict_path: str = typer.Option(
-        "./models/ppocrv5_server/ppocrv5_dict.txt", "--dict-path", help="字符字典路径"
-    ),
     det_limit_side_len: float = typer.Option(
         960, "--det-limit-len", help="检测图像边长限制"
     ),
@@ -64,8 +58,6 @@ def ocr(
         "use_gpu": use_gpu,
         "det_model_dir": det_model_dir,
         "rec_model_dir": rec_model_dir,
-        "cls_model_dir": cls_model_dir,
-        "rec_char_dict_path": rec_char_dict_path,
         "det_limit_side_len": det_limit_side_len,
         "det_db_thresh": det_db_thresh,
         "det_db_box_thresh": det_db_box_thresh,

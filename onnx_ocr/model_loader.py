@@ -25,10 +25,10 @@ def get_default_model_paths(models_dir=None):
     if models_dir is None:
         models_dir = get_default_models_dir()
 
-    return {
-        "det_model_dir": os.path.join(models_dir, "ppocrv5_server/det/det.onnx"),
-        "rec_model_dir": os.path.join(models_dir, "ppocrv5_server/rec/rec.onnx"),
-    }
+    det_model_dir = os.path.join(models_dir, "ppocrv5_server/det/det.onnx")
+    rec_model_dir = os.path.join(models_dir, "ppocrv5_server/rec/rec.onnx")
+
+    return {"det_model_dir": det_model_dir, "rec_model_dir": rec_model_dir}
 
 
 def download_models(det_model_dir, rec_model_dir):

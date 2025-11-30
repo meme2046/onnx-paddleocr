@@ -19,6 +19,9 @@ class ONNXPaddleOcr(TextSystem):
         # params.rec_image_shape = "3, 32, 320"
         params.rec_image_shape = "3, 48, 320"
 
+        # 根据传入的参数覆盖更新默认参数
+        params.__dict__.update(**kwargs)
+
         # 设置默认模型路径
         default_paths = get_default_model_paths()
         for key, value in default_paths.items():
@@ -28,9 +31,6 @@ class ONNXPaddleOcr(TextSystem):
         download_models(
             getattr(params, "det_model_dir"), getattr(params, "rec_model_dir")
         )
-
-        # 根据传入的参数覆盖更新默认参数
-        params.__dict__.update(**kwargs)
 
         # 初始化模型
         super().__init__(params)

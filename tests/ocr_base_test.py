@@ -16,9 +16,9 @@ def test_rec(fp: str = "./images/shijuan.jpg"):
     model = ONNXPaddleOcr(
         use_angle_cls=False,
         use_gpu=False,
-        det_model_dir="./models/ppocrv5_server/det/det.onnx",
-        rec_model_dir="./models/ppocrv5_server/rec/rec.onnx",
         cpu_threads=16,  # CPU推理线程数
+        det_model_dir="",
+        rec_model_dir="",
     )
     img = cv2.imread(fp)
     s = time.time()
