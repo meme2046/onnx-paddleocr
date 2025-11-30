@@ -32,7 +32,7 @@ ocr ./test.jpg --output ./output # 示例:识别图片
 ```python
 import cv2
 
-from onnx_ocr import ONNXPaddleOcr, process_bounding_box
+from onnx_ocr import ONNXPaddleOcr, result_to_json_data, save_to_img, save_to_json
 
 # 初始化OCR
 model = ONNXPaddleOcr(
@@ -45,19 +45,13 @@ model = ONNXPaddleOcr(
 
 # 读取图片
 img = cv2.imread("./images/test.jpg")
-
 # 执行OCR
-results = model.ocr(img)
+result = model.ocr(img)
+# 转为json数据
+json_data = result_to_json_data(result)
 
-# 输出结果
-ocr_results = [
-    {
-        "text": line[1][0],
-        "confidence": float(line[1][1]),
-        "bounding_box": process_bounding_box(line[0]),
-    }
-    for line in result[0]
-]
+save_to_img(img, result, "output")
+save_to_json(json_data, "output")
 ```
 
 ## 模型文件

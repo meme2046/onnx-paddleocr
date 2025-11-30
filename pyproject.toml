@@ -21,7 +21,7 @@
     name = "onnx-paddleocr"
     readme = "README.md"
     requires-python = ">=3.10"
-    version = "0.1.7"
+    version = "0.1.8"
 
     [project.scripts]
         ocr = "onnx_ocr.cli:app"

@@ -1,9 +1,15 @@
 import argparse
-import time
+import datetime
+import json
+from pathlib import Path
+
+import cv2
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont
 
 from onnx_ocr.model_loader import download_models, get_default_model_paths
 from onnx_ocr.predict_system import TextSystem
-from onnx_ocr.utils import draw_ocr
+from onnx_ocr.utils import draw_ocr, project_root
 from onnx_ocr.utils import infer_args as init_args
 
 
@@ -74,7 +80,6 @@ class ONNXPaddleOcr(TextSystem):
 
 def sav2Img(org_img, result, name="draw_ocr.jpg"):
     # 显示结果
-    from PIL import Image
 
     result = result[0]
     # image = Image.open(img_path).convert('RGB')
@@ -88,20 +93,108 @@ def sav2Img(org_img, result, name="draw_ocr.jpg"):
     im_show.save(name)
 
 
-if __name__ == "__main__":
-    import cv2
+def save_to_img(image, result, save_path):
+    """
+    将OCR识别结果绘制到图像上并保存
 
-    model = ONNXPaddleOcr(use_angle_cls=True, use_gpu=False)
+    Args:
+        image: 原始图像
+        result: OCR识别结果
+        save_path: 保存路径，如果是目录则使用时间戳命名文件，如果是文件路径则直接保存
+    """
 
-    img = cv2.imread(
-        "/data2/liujingsong3/fiber_box/test/img/20230531230052008263304.jpg"
+    save_path_obj = Path(save_path)
+
+    # 判断save_path是文件还是目录
+    if save_path_obj.suffix:  # 如果有文件扩展名，则视为文件路径
+        output_file = save_path_obj
+        # 确保文件所在目录存在
+        output_file.parent.mkdir(parents=True, exist_ok=True)
+    else:  # 否则视为目录路径，使用时间戳命名文件
+        # 创建保存目录
+        save_path_obj.mkdir(parents=True, exist_ok=True)
+        # 生成带时间戳的文件名（包含毫秒）
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S_%f")[:-3]
+        output_file = save_path_obj / f"output_{timestamp}.jpg"
+
+    # 绘制识别结果
+    output_img = image.copy()
+
+    # 先在OpenCV图像上绘制所有边界框
+    for line in result[0]:
+        points = np.array(line[0], dtype=np.int32)
+        # 绘制边界框 (使用OpenCV)
+        cv2.polylines(
+            output_img, [points], isClosed=True, color=(0, 255, 0), thickness=2
+        )
+
+    # 转换为PIL图像用于文本绘制（同时支持中英文）
+    img_pil = Image.fromarray(cv2.cvtColor(output_img, cv2.COLOR_BGR2RGB))
+    draw = ImageDraw.Draw(img_pil)
+
+    font_path = project_root / "fonts/simfang.ttf"
+    font = (
+        ImageFont.truetype(str(font_path), 36)
+        if font_path.exists()
+        else ImageFont.load_default()
     )
-    s = time.time()
-    result = model.ocr(img)
-    e = time.time()
-    print("total time: {:.3f}".format(e - s))
-    print("result:", result)
-    for box in result[0]:
-        print(box)
 
-    sav2Img(img, result)
+    # 在PIL图像上绘制文本
+    for line in result[0]:
+        points = np.array(line[0], dtype=np.int32)
+        text = line[1][0]
+        position = tuple(points[0])
+        draw.text(position, text, font=font, fill=(0, 0, 255, 255))
+
+    # 最后转换回OpenCV格式
+    output_img = cv2.cvtColor(np.array(img_pil), cv2.COLOR_RGB2BGR)
+
+    # 保存图像
+    cv2.imwrite(str(output_file), output_img)
+
+
+def save_to_json(ocr_results, save_path):
+    """
+    将OCR识别结果保存为JSON文件
+
+    Args:
+        ocr_results: OCR识别结果列表
+        save_path: 保存路径
+    """
+    # 创建保存目录
+    save_path_obj = Path(save_path)
+
+    # 判断save_path是文件还是目录
+    if save_path_obj.suffix:  # 如果有文件扩展名，则视为文件路径
+        output_file = save_path_obj
+        # 确保文件所在目录存在
+        output_file.parent.mkdir(parents=True, exist_ok=True)
+    else:  # 否则视为目录路径，使用时间戳命名文件
+        # 创建保存目录
+        save_path_obj.mkdir(parents=True, exist_ok=True)
+        # 生成带时间戳的文件名（包含毫秒）
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S_%f")[:-3]
+        output_file = save_path_obj / f"output_{timestamp}.json"
+
+    # 保存JSON文件
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(ocr_results, f, ensure_ascii=False, indent=2)
+
+
+def process_bounding_box(box_data):
+    """处理边界框数据的辅助函数"""
+    try:
+        return np.asarray(box_data).reshape(4, 2).tolist()
+    except (ValueError, AttributeError):
+        return []
+
+
+def result_to_json_data(results):
+    return [
+        {
+            "text": line[1][0],
+            "confidence": float(line[1][1]),
+            "bounding_box": process_bounding_box(line[0]),
+        }
+        for line in results[0]
+    ]
