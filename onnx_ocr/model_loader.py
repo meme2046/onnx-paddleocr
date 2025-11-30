@@ -33,14 +33,14 @@ def get_default_model_paths(models_dir=None):
 
 def download_models(det_model_dir, rec_model_dir):
     model_files = {
-        det_model_dir: "https://github.com/meme2046/onnx-paddleocr/releases/download/v0.1.0/det.onnx",
-        rec_model_dir: "https://github.com/meme2046/onnx-paddleocr/releases/download/v0.1.0/rec.onnx",
+        det_model_dir: "https://github.com/meme2046/onnx-paddleocr/releases/download/ppocrv5_server/det.onnx",
+        rec_model_dir: "https://github.com/meme2046/onnx-paddleocr/releases/download/ppocrv5_server/rec.onnx",
     }
 
     for rel_path, url in model_files.items():
         Path(rel_path).parent.mkdir(parents=True, exist_ok=True)
 
         if not os.path.exists(rel_path):
-            print(f"正在下载 {rel_path}...")
+            print(f"正在从github下载onnx模型: {rel_path}...")
             urllib.request.urlretrieve(url, rel_path)
             print(f"{rel_path} 下载完成")
