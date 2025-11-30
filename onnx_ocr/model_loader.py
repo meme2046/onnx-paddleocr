@@ -1,5 +1,7 @@
 import os
+import shutil
 import sys
+import tempfile
 import urllib.request
 from pathlib import Path
 
@@ -42,5 +44,21 @@ def download_models(det_model_dir, rec_model_dir):
 
         if not os.path.exists(rel_path):
             print(f"正在从github下载onnx模型: {rel_path}...")
-            urllib.request.urlretrieve(url, rel_path)
-            print(f"{rel_path} 下载完成")
+            # 创建临时文件进行下载，避免下载中断导致的不完整文件残留问题
+            temp_fd, temp_path = tempfile.mkstemp(
+                suffix=".onnx", prefix="tmp_", dir=Path(rel_path).parent
+            )
+            try:
+                with os.fdopen(temp_fd, "wb") as temp_file:
+                    # 设置请求超时为30秒
+                    request = urllib.request.Request(url)
+                    with urllib.request.urlopen(request, timeout=20) as response:
+                        shutil.copyfileobj(response, temp_file)
+                # 下载完成后再重命名成正式文件
+                shutil.move(temp_path, rel_path)
+                print(f"{rel_path} 下载完成")
+            except Exception as e:
+                # 如果下载过程中出现异常，删除临时文件
+                os.unlink(temp_path)
+                print(f"下载失败: {str(e)}")
+                raise e
