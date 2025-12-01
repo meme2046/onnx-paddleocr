@@ -16,7 +16,7 @@ app = typer.Typer(help="onnx paddleocr 命令行工具")
 def ocr(
     image_path: str = typer.Argument(..., help="输入图像路径"),
     output_path: Optional[str] = typer.Option(
-        "./output", "--output", "-o", help="输出结果文件路径(JSON格式)"
+        "", "--output", "-o", help="输出结果文件路径(JSON格式)"
     ),
     use_angle_cls: bool = typer.Option(
         False, "--use-angle-cls", help="是否使用角度分类器"
