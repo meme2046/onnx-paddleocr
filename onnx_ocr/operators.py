@@ -1,5 +1,4 @@
 import math
-import sys
 
 import cv2
 import numpy as np
@@ -130,8 +129,9 @@ class DetResizeForTest(object):
                 return None, (None, None)
             img = cv2.resize(img, (int(resize_w), int(resize_h)))
         except Exception:
-            print(img.shape, resize_w, resize_h)
-            sys.exit(0)
+            raise Exception(
+                f"Failed to resize image with shape {img.shape} to ({resize_w}, {resize_h})"
+            )
         ratio_h = resize_h / float(h)
         ratio_w = resize_w / float(w)
         return img, [ratio_h, ratio_w]

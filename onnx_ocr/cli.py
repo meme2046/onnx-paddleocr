@@ -7,8 +7,7 @@ from typing import Optional
 import cv2
 import typer
 
-from onnx_ocr.onnx_paddleocr import ONNXPaddleOcr
-from utils.helper import process_bounding_box
+from onnx_ocr.onnx_paddleocr import ONNXPaddleOcr, result_to_json_data
 
 app = typer.Typer(help="onnx paddleocr 命令行工具")
 
@@ -99,14 +98,7 @@ def ocr(
         raise typer.Exit(code=1)
 
     # 处理结果
-    ocr_results = [
-        {
-            "text": line[1][0],
-            "confidence": float(line[1][1]),
-            "bounding_box": process_bounding_box(line[0]),
-        }
-        for line in result[0]
-    ]
+    json_data = result_to_json_data(result)
 
     # 输出结果
     if output_path:
@@ -116,18 +108,18 @@ def ocr(
         output_path = str(output_dir / f"{Path(image_path).stem}_rec.json")
         try:
             with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(ocr_results, f, ensure_ascii=False, indent=2)
+                json.dump(json_data, f, ensure_ascii=False, indent=2)
             typer.echo(f"结果已保存到: {output_path}, 识别耗时: {ocr_time:.4f}秒")
         except Exception as e:
             typer.echo(f"保存结果失败: {e}", err=True)
             raise typer.Exit(code=1)
     else:
         # 直接打印到控制台
-        for item in ocr_results:
+        for item in json_data:
             typer.echo(f"文本: {item['text']}, 置信度: {item['confidence']:.4f}")
 
         if verbose:
-            typer.echo(f"\n总共识别到 {len(ocr_results)} 个文本框")
+            typer.echo(f"\n总共识别到 {len(json_data)} 个文本框")
 
 
 # @app.command()

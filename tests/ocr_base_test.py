@@ -3,7 +3,7 @@ import time
 
 import cv2
 
-from onnx_ocr import ONNXPaddleOcr, result_to_json_data, save_to_img, save_to_json
+from onnx_ocr import ONNXPaddleOcr, result_to_json_data
 from utils.elapsed import timeit
 from utils.logger import get_logger
 
@@ -34,10 +34,10 @@ def test_rec(fp: str = "./images/shijuan.jpg"):
     # out_fp = str(path_obj.with_name(path_obj.stem + "_rec" + path_obj.suffix))
     # sav2Img(img, result, out_fp)
 
-    save_to_img(img, result, "output")
-    save_to_json(json_data, "output")
+    # save_to_img(img, result, "output")
+    # save_to_json(json_data, "output")
 
 
 if __name__ == "__main__":
-    test_rec("./images/test.jpg")
+    test_rec("./images/27.jpg")
     # test_rec("./images/shijuan.jpg")

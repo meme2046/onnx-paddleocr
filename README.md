@@ -25,6 +25,7 @@ pipx install onnx-paddleocr # pipx安装
 uv tool install onnx-paddleocr # uv安装
 ocr --help # 帮助信息
 ocr ./test.jpg --output ./output # 示例:识别图片
+ocr ./test.jpg --output "" # 控制台输出
 ```
 
 ### Python API 使用
