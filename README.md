@@ -9,7 +9,11 @@
 -   支持 GPU 加速(需要 onnxruntime-gpu)
 -   轻量级部署
 
-## gpu
+## use-gpu
+
+如果使用 GPU,请检查 CUDA 和 cuDNN 版本是否正确,本项目使用 `onnxruntime-gpu==1.18.1`:
+
+> https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html#requirements
 
 ```bash
 nvcc --version
