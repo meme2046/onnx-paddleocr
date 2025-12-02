@@ -18,11 +18,11 @@ class PredictBase(object):
             providers = ["CPUExecutionProvider"]
 
         # 创建SessionOptions对象
-        session_options = onnxruntime.SessionOptions()
+        # session_options = onnxruntime.SessionOptions()
 
         try:
             onnx_session = onnxruntime.InferenceSession(
-                model_dir, session_options, providers=providers
+                model_dir, None, providers=providers
             )
         except Exception as e:
             # 如果使用GPU时出现问题,则降级到CPU
@@ -30,7 +30,7 @@ class PredictBase(object):
                 print("Please check whether CUDA and cuDNN are correctly installed!")
                 providers = ["CPUExecutionProvider"]
                 onnx_session = onnxruntime.InferenceSession(
-                    model_dir, session_options, providers=providers
+                    model_dir, None, providers=providers
                 )
             else:
                 # 如果是CPU模式也出错,则重新抛出异常
