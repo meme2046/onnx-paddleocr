@@ -39,5 +39,5 @@ def test_rec(fp: str = "./images/shijuan.jpg"):
 
 
 if __name__ == "__main__":
-    test_rec("./images/27.jpg")
-    # test_rec("./images/shijuan.jpg")
+    # test_rec("./images/test.jpg")
+    test_rec("./images/shijuan.jpg")

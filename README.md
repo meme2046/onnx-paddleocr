@@ -9,6 +9,12 @@
 -   支持 GPU 加速(需要 onnxruntime-gpu)
 -   轻量级部署
 
+## gpu
+
+```bash
+nvcc --version
+```
+
 ## 安装
 
 ```bash
@@ -26,6 +32,7 @@ uv tool install onnx-paddleocr # uv安装
 ocr --help # 帮助信息
 ocr ./test.jpg --output ./output # 示例:识别图片,输出json文件
 ocr ./test.jpg # 控制台输出
+ocr ./test.jpg --use-gpu # 需要安装支持的CUDA和cuDNN
 ```
 
 ### Python API 使用

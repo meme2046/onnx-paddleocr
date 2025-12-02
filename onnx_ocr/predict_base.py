@@ -1,21 +1,43 @@
 import onnxruntime
 
+
 class PredictBase(object):
     def __init__(self):
         pass
 
-    def get_onnx_session(self, model_dir, use_gpu, gpu_id = 0):
-        # 使用gpu
+    def get_onnx_session(self, model_dir, use_gpu, gpu_id=0):
         if use_gpu:
-            providers =[('CUDAExecutionProvider',{"cudnn_conv_algo_search": "DEFAULT","device_id": gpu_id}),'CPUExecutionProvider']
+            providers = [
+                (
+                    "CUDAExecutionProvider",
+                    {"cudnn_conv_algo_search": "DEFAULT", "device_id": gpu_id},
+                ),
+                "CPUExecutionProvider",
+            ]
         else:
-            providers =['CPUExecutionProvider']
+            providers = ["CPUExecutionProvider"]
 
-        onnx_session = onnxruntime.InferenceSession(model_dir, None,providers=providers)
+        # 创建SessionOptions对象
+        session_options = onnxruntime.SessionOptions()
+
+        try:
+            onnx_session = onnxruntime.InferenceSession(
+                model_dir, session_options, providers=providers
+            )
+        except Exception as e:
+            # 如果使用GPU时出现问题,则降级到CPU
+            if use_gpu:
+                print("Please check whether CUDA and cuDNN are correctly installed!")
+                providers = ["CPUExecutionProvider"]
+                onnx_session = onnxruntime.InferenceSession(
+                    model_dir, session_options, providers=providers
+                )
+            else:
+                # 如果是CPU模式也出错,则重新抛出异常
+                raise e
 
         # print("providers:", onnxruntime.get_device())
         return onnx_session
-
 
     def get_output_name(self, onnx_session):
         """

@@ -5,8 +5,8 @@
         "Programming Language :: Python :: 3",
     ]
     dependencies = [
-        "numpy>=2.2.6",
-        "onnxruntime-gpu>=1.23.2",
+        "numpy<2.0.0",
+        "onnxruntime-gpu==1.18.1",
         "opencv-python>=4.11.0.86",
         "pdf2image>=1.17.0",
         "pillow>=12.0.0",
@@ -15,7 +15,7 @@
         "shapely>=2.1.2",
         "toml>=0.10.2",
         "typer>=0.20.0",
-    ]
+]
     description = "ONNX PaddleOCR"
     license = { text = "MIT" }
     name = "onnx-paddleocr"
@@ -36,7 +36,7 @@
         url     = "https://mirrors.aliyun.com/pypi/simple/"
 
 [dependency-groups]
-    dev = ["ruff"]
+    dev = ["ipykernel", "ruff"]
 
 [tool.hatch.build]
     exclude = [
