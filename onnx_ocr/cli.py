@@ -116,7 +116,9 @@ def ocr(
     else:
         # 直接打印到控制台
         for item in json_data:
-            typer.echo(f"文本: {item['text']}, 置信度: {item['confidence']:.4f}")
+            typer.echo(
+                f"text: {item['text']}, confidence: {item['confidence']:.4f}, bounding_box: {item['bounding_box']}"
+            )
 
         if verbose:
             typer.echo(f"\n总共识别到 {len(json_data)} 个文本框")
