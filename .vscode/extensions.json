@@ -13,9 +13,9 @@
 		// 美化
 		"oderwat.indent-rainbow",
 		"mechatroner.rainbow-csv",
-		// 主题
 		"liviuschera.noctis",
-		"monokai.theme-monokai-pro-vscode",
+		"GitHub.github-vscode-theme",
+		"ahmadawais.shades-of-purple",
 		// 工具
 		"vscode-icons-team.vscode-icons",
 		"alefragnani.project-manager",
@@ -27,7 +27,6 @@
 		"bradlc.vscode-tailwindcss",
 		"dbaeumer.vscode-eslint",
 		"burkeholland.simple-react-snippets",
-		"jock.svg",
-		"Alibaba-Cloud.tongyi-lingma"
+		"midudev.better-svg"
 	]
 }

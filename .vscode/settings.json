@@ -49,6 +49,7 @@
 			"source.organizeImports.ruff": "explicit" // 保存时自动排序 import 语句
 		}
 	},
+	"python.analysis.typeCheckingMode": "standard",
 	// 📝python env
 	"python.envFile": "${workspaceFolder}/.env",
 	"terminal.integrated.env.windows": {
@@ -70,12 +71,29 @@
 		"notebook.source.organizeImports": "explicit" // notebook 保存时自动排序 import 语句
 	},
 	"editor.formatOnSave": true, // 保存时格式化
-	// prettier配置
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"prettier.tabWidth": 4,
-	"prettier.bracketSpacing": true,
-	"prettier.printWidth": 80,
-	"prettier.useTabs": true, //使用制表符而不是空格缩进行
+	"prettier.configPath": ".vscode/.prettierrc.json",
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[xml]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": false
+	},
+	"[css]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[yaml]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
 	// 📝彩虹缩进 indent-rainbow 配置
 	"indentRainbow.ignoreErrorLanguages": ["python", "typescriptreact"],
 	// 📝code-runner
@@ -85,8 +103,8 @@
 		"typescript": "node --loader ts-node/esm --disable-warning=ExperimentalWarning"
 	},
 	"json.format.enable": true,
-	"workbench.iconTheme": "vscode-icons",
-	"workbench.colorTheme": "Solarized Light",
+	"workbench.iconTheme": "vs-seti",
+	"workbench.colorTheme": "Noctis Lux",
 	"terminal.integrated.enableMultiLinePasteWarning": "auto",
 	// 📝vscode自带css规则配置
 	"css.validate": true,
@@ -94,5 +112,16 @@
 	"css.lint.unknownProperties": "warning", // 对未知的属性发出警告
 	"css.lint.vendorPrefix": "warning", // 对供应商前缀发出警告
 	"css.lint.duplicateProperties": "error", // 对重复的属性发出错误
-	"css.lint.emptyRules": "warning"
+	"css.lint.emptyRules": "warning",
+	"tailwindCSS.files.exclude": [
+		"**/.git/**",
+		"**/node_modules/**",
+		"**/.hg/**",
+		"**/.svn/**",
+		"**/src/components/ui/**/*"
+	],
+	"files.associations": {
+		"*.svg": "xml",
+		".prettierrc": "json"
+	}
 }
