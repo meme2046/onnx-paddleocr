@@ -22,21 +22,7 @@
 	},
 	// 终端日志级别
 	"terminal.integrated.enablePersistentSessions": true,
-	"terminal.integrated.environmentChangesIndicator": "on",
 	"terminal.integrated.showExitAlert": true,
-	// 📝toml格式化配置
-	"[toml]": {
-		"editor.defaultFormatter": "tamasfe.even-better-toml"
-	},
-	"evenBetterToml.formatter.indentTables": true, // table缩进
-	"evenBetterToml.formatter.indentEntries": true, // entries缩进
-	"evenBetterToml.formatter.alignComments": false, // 垂直对齐comments
-	"evenBetterToml.formatter.alignEntries": true, // 垂直对齐entries
-	"evenBetterToml.formatter.reorderKeys": true, // 按字母顺序对不以空行分隔的键重新排序
-	"evenBetterToml.formatter.reorderArrays": true, // 按字母顺序对不以空行分隔的键重新排序
-	"evenBetterToml.formatter.compactEntries": false, // 省略 `=` 周围的空格
-	"evenBetterToml.formatter.arrayTrailingComma": true, // 为多行数组添加尾随逗号
-	"evenBetterToml.formatter.arrayAutoExpand": true, // 自动将数组扩展为多行
 	// 📝ruff
 	"ruff.fixAll": true,
 	"[python]": {
@@ -50,7 +36,6 @@
 		}
 	},
 	"python.analysis.typeCheckingMode": "standard",
-	// 📝python env
 	"python.envFile": "${workspaceFolder}/.env",
 	"terminal.integrated.env.windows": {
 		"PYTHONPATH": "${workspaceFolder}"
@@ -71,7 +56,8 @@
 		"notebook.source.organizeImports": "explicit" // notebook 保存时自动排序 import 语句
 	},
 	"editor.formatOnSave": true, // 保存时格式化
-	"prettier.configPath": ".vscode/.prettierrc.json",
+	"prettier.documentSelectors": ["text.plain", "nginx.nginx"],
+	"prettier.configPath": ".vscode/.prettierrc",
 	"[javascript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
@@ -81,10 +67,6 @@
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"[xml]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
-		"editor.formatOnSave": false
-	},
 	"[css]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
@@ -92,6 +74,26 @@
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[yaml]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[toml]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[xml]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": false
+	},
+	"[svg]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": false
+	},
+	"[dockerfile]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[shellscript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[markdown]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	// 📝彩虹缩进 indent-rainbow 配置
@@ -103,7 +105,7 @@
 		"typescript": "node --loader ts-node/esm --disable-warning=ExperimentalWarning"
 	},
 	"json.format.enable": true,
-	"workbench.iconTheme": "vs-seti",
+	"workbench.iconTheme": "vscode-icons",
 	"workbench.colorTheme": "Noctis Lux",
 	"terminal.integrated.enableMultiLinePasteWarning": "auto",
 	// 📝vscode自带css规则配置
@@ -121,7 +123,6 @@
 		"**/src/components/ui/**/*"
 	],
 	"files.associations": {
-		"*.svg": "xml",
-		".prettierrc": "json"
+		"*.txt": "markdown"
 	}
 }

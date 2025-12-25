@@ -216,11 +216,10 @@ wheels = [
 
 [[package]]
 name = "flatbuffers"
-version = "25.9.23"
+version = "25.12.19"
 source = { registry = "https://mirrors.aliyun.com/pypi/simple/" }
-sdist = { url = "https://mirrors.aliyun.com/pypi/packages/9d/1f/3ee70b0a55137442038f2a33469cc5fddd7e0ad2abf83d7497c18a2b6923/flatbuffers-25.9.23.tar.gz", hash = "sha256:676f9fa62750bb50cf531b42a0a2a118ad8f7f797a511eda12881c016f093b12" }
 wheels = [
-    { url = "https://mirrors.aliyun.com/pypi/packages/ee/1b/00a78aa2e8fbd63f9af08c9c19e6deb3d5d66b4dda677a0f61654680ee89/flatbuffers-25.9.23-py2.py3-none-any.whl", hash = "sha256:255538574d6cb6d0a79a17ec8bc0d30985913b87513a01cce8bcdb6b4c44d0e2" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/e8/2d/d2a548598be01649e2d46231d151a6c56d10b964d94043a335ae56ea2d92/flatbuffers-25.12.19-py2.py3-none-any.whl", hash = "sha256:7634f50c427838bb021c2d66a3d1168e9d199b0607e6329399f04846d42e20b4" },
 ]
 
 [[package]]
@@ -459,7 +458,7 @@ version = "0.2.1"
 source = { editable = "." }
 dependencies = [
     { name = "numpy" },
-    { name = "onnxruntime-gpu" },
+    { name = "onnxruntime" },
     { name = "opencv-python" },
     { name = "pdf2image" },
     { name = "pillow" },
@@ -479,7 +478,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "numpy", specifier = "<2.0.0" },
-    { name = "onnxruntime-gpu", specifier = "==1.18.1" },
+    { name = "onnxruntime", specifier = "==1.18.1" },
     { name = "opencv-python", specifier = ">=4.11.0.86" },
     { name = "pdf2image", specifier = ">=1.17.0" },
     { name = "pillow", specifier = ">=12.0.0" },
@@ -497,7 +496,7 @@ dev = [
 ]
 
 [[package]]
-name = "onnxruntime-gpu"
+name = "onnxruntime"
 version = "1.18.1"
 source = { registry = "https://mirrors.aliyun.com/pypi/simple/" }
 dependencies = [
@@ -509,12 +508,21 @@ dependencies = [
     { name = "sympy" },
 ]
 wheels = [
-    { url = "https://mirrors.aliyun.com/pypi/packages/4d/52/fa9ba5a69cfed82ba1765882f50664b05c26982f55fec6edd1bda700195f/onnxruntime_gpu-1.18.1-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:e9de7b8c7c975f7830d1e9323daca2090408df821f2adc10ea267b4f469b59e0" },
-    { url = "https://mirrors.aliyun.com/pypi/packages/39/9b/665165a418bc45f1bc54561e19063a24b7fc2814ff5cd56e7601321e183d/onnxruntime_gpu-1.18.1-cp310-cp310-win_amd64.whl", hash = "sha256:7622a5979bb64a6631f888439b6ac8b11fbdd47da980425c697b82d4dd04b427" },
-    { url = "https://mirrors.aliyun.com/pypi/packages/92/2e/5c6a3c94a8e4794a0ad1ba00f5b86c89673f271f43c77f537a90db4472c0/onnxruntime_gpu-1.18.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:af2d3ee6fba72b57abf6f379b8aca30ee773959d4346271e7d92557dd5cf2901" },
-    { url = "https://mirrors.aliyun.com/pypi/packages/7d/78/ec2a3948600b1d3297d055d5a52175d71f45f1b2b41da749cf39973036b1/onnxruntime_gpu-1.18.1-cp311-cp311-win_amd64.whl", hash = "sha256:e40ba43771043fe286fea38b2c6549d1cc4b2b5b424624163c923163a8dc27ac" },
-    { url = "https://mirrors.aliyun.com/pypi/packages/a3/81/c364ca9c0b2260a38c7bc026b8a74e6bb8caa9e4fcc9f20438558b942b0f/onnxruntime_gpu-1.18.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:87d1884523f485f40d3a126677a9f93fc15569dd817fc753ee7fc519142a4425" },
-    { url = "https://mirrors.aliyun.com/pypi/packages/31/f0/84034a7592937f02ca3c671e50b767f86a721959619635fe40ffa14031e0/onnxruntime_gpu-1.18.1-cp312-cp312-win_amd64.whl", hash = "sha256:3f2ab38a62350965f5007111728410b3ef25213104dd1e7d61ecc158002ea3f5" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/02/83/b72ef2d6cc8f8b4d60bc6b41641eaa8975c5f968a49bc69ff3c5e9b28b7f/onnxruntime-1.18.1-cp310-cp310-macosx_11_0_universal2.whl", hash = "sha256:29ef7683312393d4ba04252f1b287d964bd67d5e6048b94d2da3643986c74d80" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/cd/ef/4f4e45d49c2587080f0252dba644620a9808e2d19591bb0b327650ace6b6/onnxruntime-1.18.1-cp310-cp310-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:fc706eb1df06ddf55776e15a30519fb15dda7697f987a2bbda4962845e3cec05" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/04/da/cd671caf4231942c4f68bf0dc1a959303df91dfd0e1d55c556b924d8e68e/onnxruntime-1.18.1-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:b7de69f5ced2a263531923fa68bbec52a56e793b802fcd81a03487b5e292bc3a" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/63/ea/7f1396f7279073e1288e1d39874f39999ee7ea5b2f3f5ad838214b4a3620/onnxruntime-1.18.1-cp310-cp310-win32.whl", hash = "sha256:221e5b16173926e6c7de2cd437764492aa12b6811f45abd37024e7cf2ae5d7e3" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/74/8e/0db236760a60ba59fac48e253c2c645bfd7d6ade58d4ce796b645d73e2de/onnxruntime-1.18.1-cp310-cp310-win_amd64.whl", hash = "sha256:75211b619275199c861ee94d317243b8a0fcde6032e5a80e1aa9ded8ab4c6060" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/d7/ae/e257a5ffa4ef84e51255a38b62b4fdb538d92455e1f0f0ad056074f89c94/onnxruntime-1.18.1-cp311-cp311-macosx_11_0_universal2.whl", hash = "sha256:f26582882f2dc581b809cfa41a125ba71ad9e715738ec6402418df356969774a" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/54/4b/f4c52a6b5e62f98f852a946fefc48f12d5838652eb7da5c300dc27a80ba4/onnxruntime-1.18.1-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:ef36f3a8b768506d02be349ac303fd95d92813ba3ba70304d40c3cd5c25d6a4c" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/dd/ae/163375ec2b6aee385c26889b4a0bd4546133b1da7c66285ef8db180781c5/onnxruntime-1.18.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:170e711393e0618efa8ed27b59b9de0ee2383bd2a1f93622a97006a5ad48e434" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/25/76/3a3007573abd458c22453838c8620d2b37e14ca82b92c8fa7a85b620d031/onnxruntime-1.18.1-cp311-cp311-win32.whl", hash = "sha256:9b6a33419b6949ea34e0dc009bc4470e550155b6da644571ecace4b198b0d88f" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/99/b2/488704f6298ac249015f65b64c24bf5611fcf2594ab0e75fa6bcce5e873f/onnxruntime-1.18.1-cp311-cp311-win_amd64.whl", hash = "sha256:5c1380a9f1b7788da742c759b6a02ba771fe1ce620519b2b07309decbd1a2fe1" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/23/e9/8a2d3e5521b896d6483b101cd698912f9ad19b26314b0c671d98656d028c/onnxruntime-1.18.1-cp312-cp312-macosx_11_0_universal2.whl", hash = "sha256:31bd57a55e3f983b598675dfc7e5d6f0877b70ec9864b3cc3c3e1923d0a01919" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/bf/75/305c44288ad9733d4209c8c5cb7eba6f09f25462bf2d64bbdfca742585c3/onnxruntime-1.18.1-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:b9e03c4ba9f734500691a4d7d5b381cd71ee2f3ce80a1154ac8f7aed99d1ecaa" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/a3/0a/89bc7acdf7b311ec5cdf6c01983e8ecb23f7b1ba7a1b2d2fd10d33dfd24a/onnxruntime-1.18.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:781aa9873640f5df24524f96f6070b8c550c66cb6af35710fd9f92a20b4bfbf6" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/b7/ea/8eac166b5903b1f0e6e08ff8c64986654b1b21e410b1f18c45e97a225a88/onnxruntime-1.18.1-cp312-cp312-win32.whl", hash = "sha256:3a2d9ab6254ca62adbb448222e630dc6883210f718065063518c8f93a32432be" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/80/62/3f54fd70511e004869a2bc5c4ba4303a5b51b625ff81bd989c35d1d8086a/onnxruntime-1.18.1-cp312-cp312-win_amd64.whl", hash = "sha256:ad93c560b1c38c27c0275ffd15cd7f45b3ad3fc96653c09ce2931179982ff204" },
 ]
 
 [[package]]
@@ -697,17 +705,17 @@ wheels = [
 
 [[package]]
 name = "protobuf"
-version = "6.33.1"
+version = "6.33.2"
 source = { registry = "https://mirrors.aliyun.com/pypi/simple/" }
-sdist = { url = "https://mirrors.aliyun.com/pypi/packages/0a/03/a1440979a3f74f16cab3b75b0da1a1a7f922d56a8ddea96092391998edc0/protobuf-6.33.1.tar.gz", hash = "sha256:97f65757e8d09870de6fd973aeddb92f85435607235d20b2dfed93405d00c85b" }
+sdist = { url = "https://mirrors.aliyun.com/pypi/packages/34/44/e49ecff446afeec9d1a66d6bbf9adc21e3c7cea7803a920ca3773379d4f6/protobuf-6.33.2.tar.gz", hash = "sha256:56dc370c91fbb8ac85bc13582c9e373569668a290aa2e66a590c2a0d35ddb9e4" }
 wheels = [
-    { url = "https://mirrors.aliyun.com/pypi/packages/06/f1/446a9bbd2c60772ca36556bac8bfde40eceb28d9cc7838755bc41e001d8f/protobuf-6.33.1-cp310-abi3-win32.whl", hash = "sha256:f8d3fdbc966aaab1d05046d0240dd94d40f2a8c62856d41eaa141ff64a79de6b" },
-    { url = "https://mirrors.aliyun.com/pypi/packages/a6/79/8780a378c650e3df849b73de8b13cf5412f521ca2ff9b78a45c247029440/protobuf-6.33.1-cp310-abi3-win_amd64.whl", hash = "sha256:923aa6d27a92bf44394f6abf7ea0500f38769d4b07f4be41cb52bd8b1123b9ed" },
-    { url = "https://mirrors.aliyun.com/pypi/packages/cd/93/26213ff72b103ae55bb0d73e7fb91ea570ef407c3ab4fd2f1f27cac16044/protobuf-6.33.1-cp39-abi3-macosx_10_9_universal2.whl", hash = "sha256:fe34575f2bdde76ac429ec7b570235bf0c788883e70aee90068e9981806f2490" },
-    { url = "https://mirrors.aliyun.com/pypi/packages/c2/32/df4a35247923393aa6b887c3b3244a8c941c32a25681775f96e2b418f90e/protobuf-6.33.1-cp39-abi3-manylinux2014_aarch64.whl", hash = "sha256:f8adba2e44cde2d7618996b3fc02341f03f5bc3f2748be72dc7b063319276178" },
-    { url = "https://mirrors.aliyun.com/pypi/packages/8e/d0/d796e419e2ec93d2f3fa44888861c3f88f722cde02b7c3488fcc6a166820/protobuf-6.33.1-cp39-abi3-manylinux2014_s390x.whl", hash = "sha256:0f4cf01222c0d959c2b399142deb526de420be8236f22c71356e2a544e153c53" },
-    { url = "https://mirrors.aliyun.com/pypi/packages/1d/2a/3c5f05a4af06649547027d288747f68525755de692a26a7720dced3652c0/protobuf-6.33.1-cp39-abi3-manylinux2014_x86_64.whl", hash = "sha256:8fd7d5e0eb08cd5b87fd3df49bc193f5cfd778701f47e11d127d0afc6c39f1d1" },
-    { url = "https://mirrors.aliyun.com/pypi/packages/08/b4/46310463b4f6ceef310f8348786f3cff181cea671578e3d9743ba61a459e/protobuf-6.33.1-py3-none-any.whl", hash = "sha256:d595a9fd694fdeb061a62fbe10eb039cc1e444df81ec9bb70c7fc59ebcb1eafa" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/bc/91/1e3a34881a88697a7354ffd177e8746e97a722e5e8db101544b47e84afb1/protobuf-6.33.2-cp310-abi3-win32.whl", hash = "sha256:87eb388bd2d0f78febd8f4c8779c79247b26a5befad525008e49a6955787ff3d" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/64/20/4d50191997e917ae13ad0a235c8b42d8c1ab9c3e6fd455ca16d416944355/protobuf-6.33.2-cp310-abi3-win_amd64.whl", hash = "sha256:fc2a0e8b05b180e5fc0dd1559fe8ebdae21a27e81ac77728fb6c42b12c7419b4" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/b2/ca/7e485da88ba45c920fb3f50ae78de29ab925d9e54ef0de678306abfbb497/protobuf-6.33.2-cp39-abi3-macosx_10_9_universal2.whl", hash = "sha256:d9b19771ca75935b3a4422957bc518b0cecb978b31d1dd12037b088f6bcc0e43" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/7d/4f/f743761e41d3b2b2566748eb76bbff2b43e14d5fcab694f494a16458b05f/protobuf-6.33.2-cp39-abi3-manylinux2014_aarch64.whl", hash = "sha256:b5d3b5625192214066d99b2b605f5783483575656784de223f00a8d00754fc0e" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/b1/fa/26468d00a92824020f6f2090d827078c09c9c587e34cbfd2d0c7911221f8/protobuf-6.33.2-cp39-abi3-manylinux2014_s390x.whl", hash = "sha256:8cd7640aee0b7828b6d03ae518b5b4806fdfc1afe8de82f79c3454f8aef29872" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/56/13/333b8f421738f149d4fe5e49553bc2a2ab75235486259f689b4b91f96cec/protobuf-6.33.2-cp39-abi3-manylinux2014_x86_64.whl", hash = "sha256:1f8017c48c07ec5859106533b682260ba3d7c5567b1ca1f24297ce03384d1b4f" },
+    { url = "https://mirrors.aliyun.com/pypi/packages/0e/15/4f02896cc3df04fc465010a4c6a0cd89810f54617a32a70ef531ed75d61c/protobuf-6.33.2-py3-none-any.whl", hash = "sha256:7636aad9bb01768870266de5dc009de2d1b936771b38a793f73cbbf279c91c5c" },
 ]
 
 [[package]]

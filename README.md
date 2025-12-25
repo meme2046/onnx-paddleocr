@@ -10,10 +10,8 @@
 -   轻量级部署
 
 ## use-gpu
-
-如果使用 GPU,请检查 CUDA 和 cuDNN 版本是否正确,本项目使用 `onnxruntime-gpu==1.18.1`:
-
-> https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html#requirements
+1. 如果使用 GPU, 替换本项目依赖`uv remove onnxruntime==1.18.1` -> `uv add onnxruntime-gpu==1.18.1`
+2. 检查 CUDA 和 cuDNN 版本是否正确: https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html#requirements
 
 ```bash
 nvcc --version
